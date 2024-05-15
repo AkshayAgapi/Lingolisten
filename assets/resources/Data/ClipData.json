@@ -1,0 +1,18 @@
+[
+  {
+    "audio_path": "LanguageAudio/Hindi_1",
+    "correct_answer": "Hindi"
+  },
+  {
+    "audio_path": "LanguageAudio/Kannada_1",
+    "correct_answer": "Kannada"
+  },
+  {
+    "audio_path": "LanguageAudio/Malayalam_1",
+    "correct_answer": "Malayalam"
+  },
+  {
+    "audio_path": "LanguageAudio/Tamil_1",
+    "correct_answer": "Tamil"
+  }
+]
