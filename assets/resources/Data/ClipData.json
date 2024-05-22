@@ -14,5 +14,21 @@
   {
     "audio_path": "LanguageAudio/Tamil_1",
     "correct_answer": "Tamil"
+  },
+  {
+    "audio_path": "LanguageAudio/Bengali_1",
+    "correct_answer": "Bengali"
+  },
+  {
+    "audio_path": "LanguageAudio/Gujarathi_1",
+    "correct_answer": "Gujarathi"
+  },
+  {
+    "audio_path": "LanguageAudio/Marati_1",
+    "correct_answer": "Marathi"
+  },
+  {
+    "audio_path": "LanguageAudio/Nepali_1",
+    "correct_answer": "Nepali"
   }
 ]

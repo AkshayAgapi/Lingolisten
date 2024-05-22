@@ -37,7 +37,7 @@ export default class GameController extends cc.Component {
     protected start(): void {
         this.scheduleOnce(() => {
             this.loadNextQuestion();
-        }, 1);
+        }, 0.2);
     }
 
     getCurrentRightAnswer() : string{
@@ -45,8 +45,8 @@ export default class GameController extends cc.Component {
     }
 
     loadNextQuestion() {
+        this.checkButton.color  = new cc.Color(184, 182, 178);
         this.currentQuestion = this.quizManager.getQuizQuestion(this.currentQuestionIndex);
-        console.log("Currect Question : "+this.currentQuestion);
         this.audioManager.loadClip(this.currentQuestion.audio_path);
         this.instantiateAnswerButtons();
     }
@@ -77,7 +77,6 @@ export default class GameController extends cc.Component {
     }
 
     handleAnswerButtonClick(answerButton: cc.Node) {
-        console.log("Selected from the Controller");
         // Deselect other buttons
         this.answerButtonContainer.children.forEach(button => {
             if (button !== answerButton) {
@@ -88,6 +87,7 @@ export default class GameController extends cc.Component {
         // Update selected answer
         this.selectedAnswerButton = answerButton;
         answerButton.getComponent('AnswerButton').setSelected(true);
+        this.checkButton.color  = new cc.Color(220, 102, 31);
     }
 
     handleCheckButtonClick() {
@@ -96,10 +96,8 @@ export default class GameController extends cc.Component {
             const isCorrect = this.selectedAnswerButton.getComponent('AnswerButton').isCorrectAnswer(this.getCurrentRightAnswer());
             // Handle correctness (e.g., change color)
             if (isCorrect) {
-                cc.log("Correct answer!");
                 this.selectedAnswerButton.getComponent('AnswerButton').setCorrect();
             } else {
-                cc.log("Incorrect answer!");
                 this.correctAnswerButton.setCorrect();
                 this.selectedAnswerButton.getComponent('AnswerButton').setIncorrect();
             }
@@ -108,7 +106,7 @@ export default class GameController extends cc.Component {
             this.scheduleOnce(() => {
                 this.currentQuestionIndex++;
                 this.loadNextQuestion();
-            }, 3);
+            }, 1.5);
 
         } else {
             cc.log("No answer selected.");
@@ -151,13 +149,6 @@ export default class GameController extends cc.Component {
     
 
     handleAnswerClick(selectedAnswer: string) {
-        if (selectedAnswer === this.currentQuestion.correct_answer) {
-            // Handle correct answer
-            console.log("correct answer");
-        } else {
-            // Handle wrong answer
-            console.log("wrong answer");
-        }
         // Move to next question
         this.currentQuestionIndex++;
         this.loadNextQuestion();

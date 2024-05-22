@@ -25,6 +25,10 @@ export default class QuizManager extends cc.Component {
     }
 
     getQuizQuestion(index: number): QuizQuestion {
+        if (index < 0 || index >= this.quizData.length) {
+            // Calculate the valid index by taking the modulus
+            index = (index % this.quizData.length + this.quizData.length) % this.quizData.length;
+        }
         return this.quizData[index];
     }
 

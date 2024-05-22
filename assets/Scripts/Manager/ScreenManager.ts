@@ -24,14 +24,14 @@ export default class PopupManager extends GenericSingleton<PopupManager> {
     }
 
     public showScreen<T extends ScreenBase>(ctor: { new(): T }, params?: any[]): void {
-        const popup = this.getScreenByConstructor(ctor);
-        if (popup) {
-            // this._popups.forEach(p => {
-            //     if (p !== popup) {
-            //         p.onHide();
-            //     }
-            // });
-            popup.onShow(params);
+        const screen = this.getScreenByConstructor(ctor);
+        if (screen) {
+            this._popups.forEach(p => {
+                if (p !== screen) {
+                    p.onHide();
+                }
+            });
+            screen.onShow(params);
         } else {
             console.warn(`PopupManager: Popup not found.`);
         }
